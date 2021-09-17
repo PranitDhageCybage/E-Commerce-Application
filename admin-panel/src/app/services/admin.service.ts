@@ -25,6 +25,16 @@ export class AdminService implements CanActivate {
     return this.httpClient.post(this.url + '/signin', body);
   }
 
+  signup(firstName: string, lastName: String, email: string, password: string) {
+    const body = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+    };
+    return this.httpClient.post(this.url + '/signup', body);
+  }
+
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (sessionStorage['token']) {
       // user is already logged in

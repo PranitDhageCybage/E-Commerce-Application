@@ -92,6 +92,7 @@ router.get("/details/:id", (request, response) => {
             id: tempProduct["categoryId"],
             title: tempProduct["categoryTitle"],
           },
+          image: tempProduct["image"],
         };
         products.push(product);
       }
@@ -138,6 +139,7 @@ router.get("/details/", (request, response) => {
       // Iterate over the colllection and modify products
       for (let index = 0; index < data.length; index++) {
         const tempProduct = data[index];
+        console.log(tempProduct);
         const product = {
           id: tempProduct["id"],
           title: tempProduct["title"],
@@ -152,6 +154,7 @@ router.get("/details/", (request, response) => {
             id: tempProduct["categoryId"],
             title: tempProduct["categoryTitle"],
           },
+          image: tempProduct["image"],
         };
         products.push(product);
       }
