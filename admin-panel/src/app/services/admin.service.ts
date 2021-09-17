@@ -1,23 +1,42 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class AdminService {
+export class AdminService implements CanActivate {
+  url = 'http://localhost:3000/admin';
 
-  url = 'http://localhost:3000/admin'
-  constructor(
-    private router: Router,
-    private httpClient: HttpClient
-  ) { }
+  constructor(private router: Router, private httpClient: HttpClient) {}
 
-  login(email:string, password:string){
+  login(email: string, password: string) {
     const body = {
       email: email,
-      password: password
+      password: password,
+    };
+
+    return this.httpClient.post(this.url + '/signin', body);
+  }
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    if (sessionStorage['token']) {
+      // user is already logged in
+      // launch the component
+      return true;
     }
-    return this.httpClient.post(this.url + '/signin', body)
+
+    // force user to login
+    this.router.navigate(['/login']);
+
+    // user has not logged in yet
+    // stop launching the component
+    return false;
   }
 }

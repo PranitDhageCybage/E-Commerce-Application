@@ -14,26 +14,32 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate: [AdminService],
   },
   {
     path: 'user-list',
     component: UserListComponent,
+    canActivate: [AdminService],
   },
   {
     path: 'product-list',
     component: ProductListComponent,
+    canActivate: [AdminService],
   },
   {
     path: 'order-list',
     component: OrderListComponent,
+    canActivate: [AdminService],
   },
   {
     path: 'product-add',
     component: ProductAddComponent,
+    canActivate: [AdminService],
   },
   {
     path: 'product-upload-image',
     component: UploadImageComponent,
+    canActivate: [AdminService],
   },
 
   { path: 'login', component: LoginComponent },
