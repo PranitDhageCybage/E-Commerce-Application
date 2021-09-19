@@ -120,7 +120,7 @@ router.get("/details/:id", (request, response) => {
  *       200:
  *         description: successful message
  */
-router.get("/details/", (request, response) => {
+router.get("/details", (request, response) => {
   const statement = `
           SELECT p.id, p.title, p.description,
               c.id AS categoryId, c.title AS categoryTitle,
@@ -139,7 +139,6 @@ router.get("/details/", (request, response) => {
       // Iterate over the colllection and modify products
       for (let index = 0; index < data.length; index++) {
         const tempProduct = data[index];
-        console.log(tempProduct);
         const product = {
           id: tempProduct["id"],
           title: tempProduct["title"],
