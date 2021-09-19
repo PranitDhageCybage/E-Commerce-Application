@@ -8,7 +8,7 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
-  products = [];
+  products :any = [];
   constructor(private router: Router, private productService: ProductService) {}
 
   ngOnInit(): void {
