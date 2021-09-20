@@ -12,6 +12,10 @@
 admin-panel/node_modules/
 user-portal/node_modules/
 amazon-server/node_modules/
+/amazon-server/images/
+/admin-panel/src/assets/
+/user-portal/src/assets/
+
 
 # profiling files
 chrome-profiler-events*.json
@@ -46,3 +50,5 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+
