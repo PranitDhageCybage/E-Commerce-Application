@@ -1,11 +1,16 @@
 const express = require("express");
 const utils = require("../../utils");
 const db = require("../../db");
+const dbpromise = require("../../dbpromise");
 const fs = require("fs");
 
 //Multer for image Upload
 const multer = require("multer");
 const upload = multer({ dest: "images/" });
+
+// For deleting older Image
+const { promisify } = require("util");
+const unlinkAsync = promisify(fs.unlink);
 
 const router = express.Router();
 
@@ -289,13 +294,30 @@ router.post("/dummy-create-product", (request, response) => {
 router.post(
   "/upload-image/:productId",
   upload.single("productImage"),
-  (request, response) => {
+  async (request, response) => {
     const { productId } = request.params;
     const fileName = request.file.filename;
+
+    //Delete old image if present
+    let oldImage = null;
+    const stmnt = `SELECT * FROM product WHERE id = '${productId}'`;
+    const [products] = await dbpromise.execute(stmnt);
+
+    for (const product of products) {
+      oldImage = product["image"];
+    }
+
+    if (oldImage) {
+      try {
+        await unlinkAsync("./images/" + `${oldImage}`);
+      } catch (error) {
+        console.log("Error in Unlink Image : " + error);
+      }
+    }
+    //Update new image
     const statement = `UPDATE product SET image = '${fileName}' WHERE id = '${productId}'`;
-    db.query(statement, (error, data) => {
-      response.send(utils.createResult(error, data));
-    });
+    await dbpromise.execute(statement);
+    response.send({ status: "success" });
   }
 );
 //---------------------------------------------------------------
@@ -423,12 +445,28 @@ router.put("/update-state/:id/:isActive", (request, response) => {
  *       200:
  *         description: successful message
  */
-router.delete("/:id", (request, response) => {
-  const { id } = request.params;
-  const statement = `DELETE FROM product WHERE id = '${id}'`;
-  db.query(statement, (error, data) => {
-    response.send(utils.createResult(error, data));
-  });
+router.delete("/:productId", async (request, response) => {
+  const { productId } = request.params;
+
+  //Delete old image if present
+  let oldImage = null;
+  const stmnt = `SELECT * FROM product WHERE id = '${productId}'`;
+  const [products] = await dbpromise.execute(stmnt);
+
+  for (const product of products) {
+    oldImage = product["image"];
+  }
+
+  if (oldImage) {
+    try {
+      await unlinkAsync("./images/" + `${oldImage}`);
+    } catch (error) {
+      console.log("Error in Unlink Image : " + error);
+    }
+  }
+  const statement = `DELETE FROM product WHERE id = '${productId}'`;
+  await dbpromise.execute(statement);
+  response.send({ status: "success" });
 });
 
 module.exports = router;
