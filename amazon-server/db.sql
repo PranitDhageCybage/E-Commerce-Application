@@ -86,6 +86,15 @@ create table orderDetails (
 	createdOn TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+create table cart (
+	id integer PRIMARY KEY auto_increment, 
+	productId INTEGER,
+	userId INTEGER,
+	price DECIMAL,
+	quantity INTEGER,
+	totalAmount DECIMAL,
+	createdOn TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
 -- insert into productReviews (userId, productId, review, rating) values (1, 1, 'This is a nice product', 4);
 -- insert into productReviews (userId, productId, review, rating) values (2, 1, 'This is a worst product I have ever seen.... ', 1);

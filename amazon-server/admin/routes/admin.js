@@ -86,7 +86,6 @@ router.get("/profile", (request, response) => {
 router.post("/signin", (request, response) => {
   const { email, password } = request.body;
   const statement = `select id, firstName, lastName from admin where email = '${email}' and password =  '${crypto.SHA256(password)}'`;
-  console.log(statement);
   db.query(statement, (error, admins) => {
     if (error) {
       response.send({ status: "error", error: error });
