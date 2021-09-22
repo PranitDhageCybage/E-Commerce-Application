@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
             // goto the dashboard
             this.router.navigate(['/home/product/gallery']);
           } else {
-            alert(response['error']);
+            this.toastr.success(response['error']);
           }
         });
     }

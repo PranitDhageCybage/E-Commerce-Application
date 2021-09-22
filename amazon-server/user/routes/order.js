@@ -1,21 +1,45 @@
 const express = require("express");
 const db = require("../../db");
-const config = require("../../config");
 const utils = require("../../utils");
-const crypto = require("crypto-js");
-// const mailer = require("../../mailer");
-// const uuid = require("uuid");
-const fs = require("fs");
-// const path = require("path");
-const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 
+// ---------------------------------------
+//                  GET
+// ---------------------------------------
+
+// ---------------------------------------
+//                  POST
+// ---------------------------------------
+
+router.post("/", (request, response) => {
+  const { totalAmount, tax, paymentType, paymentStatus, products } =
+    request.body;
+  const statementOrder = `insert into userOrder (totalAmount, tax, paymentType, paymentStatus, deliveryStatus, userId) values (
+    '${totalAmount}', '${tax}', '${paymentType}', '${paymentStatus}', 'pending', ${request.userId}
+  )`;
+
+  db.query(statementOrder, (error, data) => {
+    const orderId = data["insertId"];
+
+    let statementOrderDetails = `INSERT INTO orderDetails (orderId, productId, quantity, price, totalAmount) values `;
+    for (let index = 0; index < products.length; index++) {
+      const product = products[index];
+      if (products.length > 1) {
+        statementOrderDetails += ", ";
+      }
+      statementOrderDetails += `(${orderId}, ${product["productId"]}, ${product["quantity"]}, ${product["price"]}, ${product["totalAmount"]})`;
+    }
+
+    db.query(statementOrderDetails, (error, data) => {
+      response.send(utils.createSuccess("placed order"));
+    });
+  });
+});
 
 
+// ---------------------------------------
+//                  DELETE
+// ---------------------------------------
 
-
-
-
-
-module.exports = router
+module.exports = router;

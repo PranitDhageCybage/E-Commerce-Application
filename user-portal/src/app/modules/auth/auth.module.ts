@@ -18,7 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    // BrowserAnimationsModule
+    // BrowserAnimationsModule  // Use this only in root app module
   ],
   providers: [AuthService],
 })

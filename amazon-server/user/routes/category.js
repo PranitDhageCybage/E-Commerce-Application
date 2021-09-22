@@ -1,14 +1,19 @@
 const express = require("express");
-const db = require("../../db");
-const config = require("../../config");
 const utils = require("../../utils");
-const crypto = require("crypto-js");
-// const mailer = require("../../mailer");
-// const uuid = require("uuid");
-const fs = require("fs");
-// const path = require("path");
-const jwt = require("jsonwebtoken");
-
+const db = require("../../db");
 const router = express.Router();
+
+// ----------------------------------------------------
+// GET
+// ----------------------------------------------------
+
+router.get("/", (request, response) => {
+  const statement = `select id, title, description from category`;
+  db.query(statement, (error, data) => {
+    response.send(utils.createResult(error, data));
+  });
+});
+
+// ----------------------------------------------------
 
 module.exports = router;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -13,7 +14,11 @@ export class SignupComponent implements OnInit {
   email: string = '';
   password: string = '';
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private toastr: ToastrService
+  ) {
     console.log('Inside Sign Up Component');
   }
 
@@ -24,10 +29,10 @@ export class SignupComponent implements OnInit {
       .signup(this.firstName, this.lastName, this.email, this.password)
       .subscribe((response: any) => {
         if (response['status'] == 'success') {
-          alert('Signed Up Successfully. Login to Continue');
+          this.toastr.success('Signed Up Successfully. Login to Continue');
           this.router.navigate(['/auth/login']);
         } else {
-          alert(response['error']);
+          this.toastr.error(response['error']);
         }
       });
   }

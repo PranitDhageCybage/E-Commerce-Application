@@ -4,14 +4,14 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class CategoryService {
 
-  url = 'http://localhost:4000/product'
+  url = 'http://localhost:4000/category'
 
   constructor(
     private httpClient: HttpClient) { }
   
-  getProducts() {
+  getCategories() {
      // add the token in the request header
      const httpOptions = {
       headers: new HttpHeaders({
@@ -20,17 +20,5 @@ export class ProductService {
     };
     
     return this.httpClient.get(this.url, httpOptions)
-  }
-
-
-  getProductDetails(id:number) {
-    // add the token in the request header
-    const httpOptions = {
-     headers: new HttpHeaders({
-       token: sessionStorage['token']
-     })
-   };
-   
-   return this.httpClient.get(this.url + "/details/" + id, httpOptions)
   }
 }
