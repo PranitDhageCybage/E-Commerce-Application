@@ -28,10 +28,7 @@ router.post("/user", (request, response) => {
   const totalAmount = price * quantity;
   const statement = `
       insert into cart (productId, userId, quantity, totalAmount, price) values(
-        ${productId}, ${request.userId}, ${quantity}, ${totalAmount}, ${price}
-      )
-  `;
-  console.log(statement);
+        ${productId}, ${request.userId}, ${quantity}, ${totalAmount}, ${price})`;
   db.query(statement, (error, data) => {
     response.send(utils.createResult(error, data));
   });

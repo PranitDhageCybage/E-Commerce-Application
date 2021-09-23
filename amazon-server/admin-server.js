@@ -12,7 +12,7 @@ const swaggerUi = require("swagger-ui-express");
 const adminRouter = require("./admin/routes/admin");
 const brandRouter = require("./admin/routes/brand");
 const categoryRouter = require("./admin/routes/category");
-// const orderRouter = require('./admin/routes/order')
+const orderRouter = require('./admin/routes/order')
 const productRouter = require("./admin/routes/product");
 // const reviewRouter = require('./admin/routes/review')
 const userRouter = require('./admin/routes/user')
@@ -79,7 +79,7 @@ app.use(getUserId);
 app.use("/admin", adminRouter);
 app.use("/brand", brandRouter);
 app.use("/category", categoryRouter);
-// app.use('/order', orderRouter)
+app.use('/order', orderRouter)
 app.use("/product", productRouter);
 // app.use('/review', reviewRouter)
 app.use('/user', userRouter)

@@ -1,3 +1,4 @@
+import { OrderDetailsComponent } from './components/order-details/order-details.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -31,6 +32,12 @@ const routes: Routes = [
     component: OrderListComponent,
     canActivate: [AdminService],
   },
+  {
+    path: 'order-details',
+    component: OrderDetailsComponent,
+    canActivate: [AdminService],
+  },
+
   {
     path: 'product-add',
     component: ProductAddComponent,

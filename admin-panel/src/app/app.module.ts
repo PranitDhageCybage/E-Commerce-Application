@@ -21,6 +21,7 @@ import { ProductService } from './services/product.service';
 import { UserService } from './services/user.service';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { OrderDetailsComponent } from './components/order-details/order-details.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { FooterComponent } from './components/footer/footer.component';
     UserListComponent,
     HeaderComponent,
     FooterComponent,
+    OrderDetailsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [

@@ -9,23 +9,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductService } from './product.service';
 import { CartService } from './cart.service';
 import { CategoryService } from './category.service';
-
+import { GalleryService } from './gallery.service';
 
 @NgModule({
-  declarations: [
-    CartComponent,
-    GalleryComponent
-  ],
-  imports: [
-    CommonModule,
-    ProductRoutingModule,
-    HttpClientModule,
-    NgbModule
-  ],
-  providers:[
-    ProductService,
-    CartService,
-    CategoryService
-  ]
+  declarations: [CartComponent, GalleryComponent],
+  imports: [CommonModule, ProductRoutingModule, HttpClientModule, NgbModule],
+  providers: [ProductService, CartService, CategoryService, GalleryService],
 })
-export class ProductModule { }
+export class ProductModule {}
