@@ -6,10 +6,11 @@ import { UserRoutingModule } from './user-routing.module';
 import { AddressAddComponent } from './address-add/address-add.component';
 import { AddressListComponent } from './address-list/address-list.component';
 import { ProfileComponent } from './profile/profile.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AddressAddComponent, AddressListComponent, ProfileComponent],
-  imports: [CommonModule, UserRoutingModule],
+  imports: [CommonModule, UserRoutingModule, FormsModule],
   providers: [UserService],
 })
 export class UserModule {}

@@ -10,6 +10,7 @@ const orderRouter = require("./user/routes/order");
 const productRouter = require("./user/routes/product");
 const cartRouter = require("./user/routes/cart");
 const categoryRouter = require("./user/routes/category");
+const addressRouter = require("./user/routes/address");
 
 const app = express();
 app.use(cors("*"));
@@ -60,6 +61,7 @@ app.use("/order", orderRouter);
 app.use("/product", productRouter);
 app.use("/cart", cartRouter);
 app.use("/category", categoryRouter);
+app.use("/address", addressRouter);
 
 console.log(`serving ${www}`);
 app.get("/", (req, res) => {

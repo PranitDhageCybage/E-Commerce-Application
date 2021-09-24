@@ -19,6 +19,21 @@ create table user (
 );
 -- INSERT INTO user (firstName, lastName, address, city, country, zip, phone, email, password) VALUES ('f', 'l', 'a', 'ct', 'ctr', 123, 45678, 'f@l.c', 'fl');
 
+DROP TABLE IF EXISTS `address`;
+CREATE TABLE `address`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `userId` int NULL DEFAULT NULL,
+  `address` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `city` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `state` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `country` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `pin` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FK_UserAddress`(`userId`) USING BTREE,
+  CONSTRAINT `FK_UserAddress` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+
+
 create table admin (
 	id integer PRIMARY KEY auto_increment, 
 	firstName VARCHAR(100),
