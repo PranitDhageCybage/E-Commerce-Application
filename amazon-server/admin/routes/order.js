@@ -38,23 +38,4 @@ router.put("/:id", (request, response) => {
   });
 });
 
-// router.put("/update-state/:id/:isActive", (request, response) => {
-//   const { id, isActive } = request.params;
-//   const statement = `update product set
-//         isActive = ${isActive}
-//       where id = ${id}`;
-//   db.query(statement, (error, data) => {
-//     response.send(utils.createResult(error, data));
-//   });
-// });
-// //---------------------------------------------------------------
-// //                          DELETE
-// //---------------------------------------------------------------
-
-// router.delete("/:productId", async (request, response) => {
-//   const statement = `DELETE FROM product WHERE id = '${productId}'`;
-//   await dbpromise.execute(statement);
-//   response.send({ status: "success" });
-// });
-
 module.exports = router;

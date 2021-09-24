@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from '../cart.service';
 
@@ -12,6 +13,7 @@ export class CartComponent implements OnInit {
   totalAmount = 0;
 
   constructor(
+    private router: Router,
     private toastr: ToastrService,
     private cartService: CartService
   ) {}
@@ -56,5 +58,9 @@ export class CartComponent implements OnInit {
         this.loadCartItems();
       }
     });
+  }
+
+  placeOrder() {
+    this.router.navigate(['/home/order/preview']);
   }
 }

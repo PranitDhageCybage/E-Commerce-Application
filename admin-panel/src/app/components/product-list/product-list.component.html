@@ -52,7 +52,7 @@
           <td>{{ product["price"] }}</td>
           <td>{{ product["brand"]["title"] }}</td>
           <td>{{ product["category"]["title"] }}</td>
-          <td>{{ product["isActive"] }}</td>
+          <td>{{ product["isActive"] == 1 ? "Active" : "Inactive" }}</td>
           <td style="text-align: center">
             <button
               (click)="toggelActiveStatus(product)"
