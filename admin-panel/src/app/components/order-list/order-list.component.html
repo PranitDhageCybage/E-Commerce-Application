@@ -48,14 +48,10 @@
                 order['deliveryStatus'] != 'Delivered'
               "
               (change)="changeDeliveryStatus(order['id'], $event)"
-              class="
-                btn btn-success btn-sm
-                dropdown dropdown-toggle
-                form-control
-              "
+              class="btn btn-success btn-sm dropdown"
               style="width: 130px"
             >
-              <option>Change Status ▼</option>
+              <option>Change Status</option>
               <option value="Pending">Pending</option>
               <option value="Accepted">Accepted</option>
               <option value="Packing">Packing</option>

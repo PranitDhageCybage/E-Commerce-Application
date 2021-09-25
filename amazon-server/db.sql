@@ -80,12 +80,14 @@ create table productReviews (
 	createdOn TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+DROP TABLE IF EXISTS `userOrder`;
 create table userOrder (
 	id integer PRIMARY KEY auto_increment, 
 	userId INTEGER,
+	addressId INTEGER,
 	totalAmount DECIMAL,
 	tax DECIMAL,
-	paymentType VARCHAR(10),
+	paymentType VARCHAR(15),
 	paymentStatus VARCHAR(10),
 	deliveryStatus VARCHAR(10),
 	createdOn TIMESTAMP DEFAULT CURRENT_TIMESTAMP

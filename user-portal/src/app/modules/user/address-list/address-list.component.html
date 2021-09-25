@@ -50,6 +50,54 @@
     </tbody>
   </table>
 </div>
+<div class="modal-body">
+  <table class="table table-striped table-bordered" style="text-align: center">
+    <thead>
+      <tr>
+        <th>Total Amount</th>
+        <th>Tax</th>
+        <th style="width: 300px">Choose Payment Type</th>
+        <th style="width: 300px">Choose Payment Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <th>{{ totalAmount }}</th>
+      <td>{{ tax }}</td>
+      <td>
+        <select
+          (change)="onSelectPaymentType($event)"
+          class="dropdown btn btn-info"
+          style="width: 190px"
+        >
+          <option value="Card">Card</option>
+          <option value="cash">cash</option>
+          <option value="UPI">UPI</option>
+          <option value="Net Banking">Net Banking</option>
+        </select>
+      </td>
+      <td>
+        <select
+          (change)="onSelectPaymentStatus($event)"
+          class="dropdown btn btn-info"
+          style="width: 190px"
+        >
+          <option value="Pending">Pending</option>
+          <option value="Success">Success</option>
+          <option value="Failed">Failed</option>
+        </select>
+      </td>
+    </tbody>
+  </table>
+</div>
 <div class="modal-footer">
   <button (click)="placeOrder()" class="btn btn-primary">Place Order</button>
 </div>
+
+<!-- // {
+  //   "addressId":11,
+  //   "totalAmount":10000,
+  //   "tax":10000,
+  //   "paymentType":"Card",
+  //   "paymentStatus":"Success",
+  //   "deliveryStatus": "Pending"
+  // } -->

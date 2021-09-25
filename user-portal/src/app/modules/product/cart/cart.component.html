@@ -1,8 +1,6 @@
 <div class="modal-header">
   <h2>Cart Items</h2>
-  <button (click)="placeOrder()" class="btn btn-success float-right">
-    Preview Order
-  </button>
+  <button routerLink="/home/product/gallery" class="btn btn-secondary float-right">Back</button>
 </div>
 
 <div class="modal-body">
@@ -60,4 +58,10 @@
       </tr>
     </tfoot>
   </table>
+
+  <div class="modal-footer">
+    <button (click)="placeOrder()" class="btn btn-success float-right">
+      Preview Order
+    </button>
+  </div>
 </div>
