@@ -12,6 +12,19 @@ const jwt = require("jsonwebtoken");
 const router = express.Router();
 
 // ---------------------------------------
+//                  GET
+// ---------------------------------------
+//Get user profile
+router.get("/", (request, response) => {
+  const statement = `SELECT id, firstName, lastName, address, city, state, country, zip, phone, email, active FROM user
+  WHERE id = ${request.userId}`;
+
+  db.query(statement, (error, data) => {
+    response.send(utils.createResult(error, data));
+  });
+});
+
+// ---------------------------------------
 //                  POST
 // ---------------------------------------
 
@@ -73,5 +86,20 @@ router.post("/signin", (request, response) => {
     }
   });
 });
+// ---------------------------------------
+//                  PUT
+// ---------------------------------------
 
-module.exports = router
+//Get user profile
+router.put("/edit-profile", (request, response) => {
+  const { firstName, lastName, address, city, state, country, zip, phone } =
+    request.body;
+  const statement = `UPDATE user set firstName = '${firstName}', lastName = '${lastName}', address = '${address}', city = '${city}', state = '${state}', country = '${country}', zip = '${zip}', phone = '${phone}'
+  WHERE id = ${request.userId}`;
+
+  db.query(statement, (error, data) => {
+    response.send(utils.createResult(error, data));
+  });
+});
+
+module.exports = router;

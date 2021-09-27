@@ -2,12 +2,14 @@ create database mystore;
 
 USE mystore;
 
+DROP TABLE IF EXISTS `user`;
 create table user (
 	id integer PRIMARY KEY auto_increment, 
 	firstName VARCHAR(100),
 	lastName VARCHAR(100), 
 	address VARCHAR(100),
 	city VARCHAR(100),
+	state VARCHAR(100),
 	country VARCHAR(100),
 	zip VARCHAR(100),
 	phone VARCHAR(20),
