@@ -10,10 +10,24 @@ import { ProductService } from './product.service';
 import { CartService } from './cart.service';
 import { CategoryService } from './category.service';
 import { GalleryService } from './gallery.service';
+import { ReviewProductComponent } from './review-product/review-product.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [CartComponent, GalleryComponent],
-  imports: [CommonModule, ProductRoutingModule, HttpClientModule, NgbModule],
+  declarations: [
+    CartComponent,
+    GalleryComponent,
+    ReviewProductComponent,
+    ProductDetailsComponent,
+  ],
+  imports: [
+    CommonModule,
+    ProductRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    NgbModule,
+  ],
   providers: [ProductService, CartService, CategoryService, GalleryService],
 })
 export class ProductModule {}

@@ -29,4 +29,9 @@ export class OrderDetailsComponent implements OnInit {
       }
     });
   }
+  onReviewProduct(order: any) {
+    this.router.navigate(['/home/product/review'], {
+      queryParams: { id: order['productId'] },
+    });
+  }
 }

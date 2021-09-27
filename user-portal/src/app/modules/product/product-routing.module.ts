@@ -4,6 +4,8 @@ import { AuthService } from '../auth/auth.service';
 import { CartComponent } from './cart/cart.component';
 import { GalleryService } from './gallery.service';
 import { GalleryComponent } from './gallery/gallery.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ReviewProductComponent } from './review-product/review-product.component';
 
 const routes: Routes = [
   {
@@ -12,6 +14,16 @@ const routes: Routes = [
     canActivate: [GalleryService],
   },
   { path: 'cart', component: CartComponent, canActivate: [AuthService] },
+  {
+    path: 'review',
+    component: ReviewProductComponent,
+    canActivate: [AuthService],
+  },
+  {
+    path: 'details',
+    component: ProductDetailsComponent,
+    canActivate: [AuthService],
+  },
 ];
 
 @NgModule({

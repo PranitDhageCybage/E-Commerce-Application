@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../order.service';
 
@@ -8,7 +9,7 @@ import { OrderService } from '../order.service';
 })
 export class OrderHistoryComponent implements OnInit {
   myOrders: any = [];
-  constructor(private orderService: OrderService) {}
+  constructor(private orderService: OrderService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadMyOrders();
@@ -34,4 +35,5 @@ export class OrderHistoryComponent implements OnInit {
         }
       });
   }
+
 }
