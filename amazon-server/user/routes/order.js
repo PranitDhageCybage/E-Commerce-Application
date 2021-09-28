@@ -23,9 +23,11 @@ router.get("/", (request, response) => {
 // Get order details using orderId
 router.get("/details/:orderId", (request, response) => {
   const { orderId } = request.params;
-  const statement = `SELECT o.id, o.orderId, o.productId, p.title, o.price, o.quantity, o.totalAmount, SUBSTRING(o.createdOn, 1, 10) AS createdOn 
+  const statement = `SELECT o.id, o.orderId, o.productId, p.title, o.price, o.quantity,
+  o.totalAmount, u.deliveryStatus, SUBSTRING(o.createdOn, 1, 10) AS createdOn 
   FROM orderdetails o
   INNER JOIN product p ON o.productId = p.id
+  INNER JOIN userorder u ON o.orderId = u.id
   WHERE orderId = ${orderId}`;
   db.query(statement, (error, data) => {
     response.send(utils.createResult(error, data));

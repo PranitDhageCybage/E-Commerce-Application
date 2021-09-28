@@ -30,13 +30,15 @@
           <td>{{ order["quantity"] }}</td>
           <td>{{ order["totalAmount"] }}</td>
           <td>{{ order["createdOn"] }}</td>
-          <td><button
-            (click)="onReviewProduct(order)"
-            *ngIf="order['deliveryStatus'] != 'Delivered'"
-            class="btn btn-success btn-sm"
-          >
-            Add Review
-          </button></td>
+          <td>
+            <button
+              (click)="onReviewProduct(order)"
+              *ngIf="order['deliveryStatus'] == 'Delivered'"
+              class="btn btn-success btn-sm"
+            >
+              Add Review
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
