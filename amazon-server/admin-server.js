@@ -12,11 +12,11 @@ const swaggerUi = require("swagger-ui-express");
 const adminRouter = require("./admin/routes/admin");
 const brandRouter = require("./admin/routes/brand");
 const categoryRouter = require("./admin/routes/category");
-const orderRouter = require('./admin/routes/order')
+const orderRouter = require("./admin/routes/order");
 const productRouter = require("./admin/routes/product");
 // const reviewRouter = require('./admin/routes/review')
-const userRouter = require('./admin/routes/user')
-
+const userRouter = require("./admin/routes/user");
+const dashboardRouter = require("./admin/routes/dashboard");
 // Middleware
 const app = express();
 app.use(cors("*"));
@@ -52,8 +52,8 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 function getUserId(request, response, next) {
   if (
     request.url == "/admin/signin" ||
-    request.url == "/admin/signup" || 
-    request.url.startsWith('/product/image')
+    request.url == "/admin/signup" ||
+    request.url.startsWith("/product/image")
   ) {
     //Do not check for token
     next();
@@ -79,10 +79,11 @@ app.use(getUserId);
 app.use("/admin", adminRouter);
 app.use("/brand", brandRouter);
 app.use("/category", categoryRouter);
-app.use('/order', orderRouter)
+app.use("/order", orderRouter);
 app.use("/product", productRouter);
 // app.use('/review', reviewRouter)
-app.use('/user', userRouter)
+app.use("/user", userRouter);
+app.use("/dashboard", dashboardRouter);
 
 app.get("/", (req, res) => {
   res.sendFile(`index.html`, { root: www });

@@ -22,6 +22,7 @@ import { UserService } from './services/user.service';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
+import { DashboardService } from './services/dashboard.service';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { OrderDetailsComponent } from './components/order-details/order-details.
     OrderService,
     BrandService,
     CategoryService,
+    DashboardService,
   ],
   bootstrap: [AppComponent],
 })

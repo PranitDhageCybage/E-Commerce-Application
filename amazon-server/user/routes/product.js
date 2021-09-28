@@ -116,7 +116,6 @@ router.get("/review/:productId", (request, response) => {
   FROM productreviews r
   INNER JOIN user u ON r.userId = u.id
   WHERE productId = ${productId} AND userId = ${userId}`;
-  console.log(statement);
   db.query(statement, (error, data) => {
     response.send(utils.createResult(error, data));
   });
@@ -127,7 +126,6 @@ router.get("/avgRating/:productId", (request, response) => {
   const { productId } = request.params;
   const statement = `SELECT ceil(avg(rating)) AS avgRating FROM productreviews 
   WHERE productId = ${productId}`;
-  console.log(statement);
   db.query(statement, (error, data) => {
     response.send(utils.createResult(error, data));
   });
