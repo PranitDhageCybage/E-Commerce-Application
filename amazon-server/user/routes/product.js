@@ -106,11 +106,37 @@ router.get("/", (request, response) => {
 // ----------------------------------------------------
 //              Review Product
 // ----------------------------------------------------
+
+//User Reviews
+router.get("/review/:productId", (request, response) => {
+  const { productId } = request.params;
+  const userId = request.userId;
+  const statement = `SELECT  r.review, r.userId, u.firstName,
+  u.lastName, r.productId, r.rating, SUBSTRING(r.createdOn, 1,10) AS createdOn
+  FROM productreviews r
+  INNER JOIN user u ON r.userId = u.id
+  WHERE productId = ${productId} AND userId = ${userId}`;
+  console.log(statement);
+  db.query(statement, (error, data) => {
+    response.send(utils.createResult(error, data));
+  });
+});
+
+// Average rating for individual product
+router.get("/avgRating/:productId", (request, response) => {
+  const { productId } = request.params;
+  const statement = `SELECT ceil(avg(rating)) AS avgRating FROM productreviews 
+  WHERE productId = ${productId}`;
+  console.log(statement);
+  db.query(statement, (error, data) => {
+    response.send(utils.createResult(error, data));
+  });
+});
+
 router.post("/review/:id", (request, response) => {
   const { id } = request.params;
   const { review, rating } = request.body;
   const userId = request.userId;
-  console.log("userId : " + userId);
   const statement = `INSERT INTO productreviews (review, userId, productId, rating) VALUES (
     '${review}', ${userId}, ${id}, ${rating}
   )`;

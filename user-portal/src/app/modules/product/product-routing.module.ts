@@ -20,7 +20,7 @@ const routes: Routes = [
     canActivate: [AuthService],
   },
   {
-    path: 'details',
+    path: 'details/:id',
     component: ProductDetailsComponent,
     canActivate: [AuthService],
   },

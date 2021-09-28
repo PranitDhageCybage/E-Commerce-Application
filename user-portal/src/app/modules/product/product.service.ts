@@ -45,4 +45,26 @@ export class ProductService {
 
     return this.httpClient.post(this.url + '/review/' + id, body, httpOptions);
   }
+
+  getProductReviews(id: number) {
+    // add the token in the request header
+    const httpOptions = {
+      headers: new HttpHeaders({
+        token: sessionStorage['token'],
+      }),
+    };
+
+    return this.httpClient.get(this.url + '/review/' + id, httpOptions);
+  }
+
+  getProductAvgRating(id: number) {
+    // add the token in the request header
+    const httpOptions = {
+      headers: new HttpHeaders({
+        token: sessionStorage['token'],
+      }),
+    };
+
+    return this.httpClient.get(this.url + '/avgRating/' + id, httpOptions);
+  }
 }
