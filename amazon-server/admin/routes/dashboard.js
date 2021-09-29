@@ -38,4 +38,19 @@ router.get("/active-order-count", (request, response) => {
   });
 });
 
+//get total number of categories
+router.get("/category-count", (request, response) => {
+  const statement = `SELECT COUNT(id) AS totalCategories FROM category`;
+  db.query(statement, (error, data) => {
+    response.send(utils.createResult(error, data));
+  });
+});
+
+//get total number of categories
+router.get("/brand-count", (request, response) => {
+  const statement = `SELECT COUNT(id) AS totalBrands FROM brand`;
+  db.query(statement, (error, data) => {
+    response.send(utils.createResult(error, data));
+  });
+});
 module.exports = router;

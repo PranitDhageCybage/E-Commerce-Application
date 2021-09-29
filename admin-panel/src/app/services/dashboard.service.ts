@@ -47,4 +47,24 @@ export class DashboardService {
     };
     return this.httpClient.get(this.url + '/active-order-count', httpOptions);
   }
+  getCategoriesCount() {
+    // add the token in the request header
+    const httpOptions = {
+      headers: new HttpHeaders({
+        token: sessionStorage['token'],
+      }),
+    };
+    return this.httpClient.get(this.url + '/category-count', httpOptions);
+  }
+
+  getBrandsCount() {
+    // add the token in the request header
+    const httpOptions = {
+      headers: new HttpHeaders({
+        token: sessionStorage['token'],
+      }),
+    };
+    return this.httpClient.get(this.url + '/brand-count', httpOptions);
+  }
+
 }

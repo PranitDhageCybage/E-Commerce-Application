@@ -32,6 +32,14 @@ router.get("/", (request, response) => {
   });
 });
 
+router.get("/:id", (request, response) => {
+  const { id } = request.params;
+  const statement = `SELECT id, title, description FROM category WHERE id = ${id}`;
+  db.query(statement, (error, data) => {
+    response.send(utils.createResult(error, data));
+  });
+});
+
 //---------------------------------
 //              POST
 //---------------------------------

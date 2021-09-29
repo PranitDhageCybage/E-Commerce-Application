@@ -10,8 +10,13 @@ import { SignupComponent } from './components/signup/signup.component';
 import { UploadImageComponent } from './components/upload-image/upload-image.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { AdminService } from './services/admin.service';
+import { BrandListComponent } from './components/brand-list/brand-list.component';
+import { CategoryListComponent } from './components/category-list/category-list.component';
+import { BrandAddComponent } from './components/brand-add/brand-add.component';
+import { CategoryAddComponent } from './components/category-add/category-add.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
     path: 'dashboard',
     component: DashboardComponent,
@@ -46,6 +51,27 @@ const routes: Routes = [
   {
     path: 'product-upload-image',
     component: UploadImageComponent,
+    canActivate: [AdminService],
+  },
+
+  {
+    path: 'brand-list',
+    component: BrandListComponent,
+    canActivate: [AdminService],
+  },
+  {
+    path: 'brand-add',
+    component: BrandAddComponent,
+    canActivate: [AdminService],
+  },
+  {
+    path: 'category-list',
+    component: CategoryListComponent,
+    canActivate: [AdminService],
+  },
+  {
+    path: 'category-add',
+    component: CategoryAddComponent,
     canActivate: [AdminService],
   },
 

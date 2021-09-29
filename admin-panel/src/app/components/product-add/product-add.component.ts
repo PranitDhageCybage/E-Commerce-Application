@@ -14,13 +14,13 @@ export class ProductAddComponent implements OnInit {
   categories: string[] = [];
   brands: string[] = [];
 
-  id = 0;
-  title = '';
-  description = '';
-  price = 0;
-  category = 1;
-  brand = 1;
-  image = '';
+  id: number = 0;
+  title: string = '';
+  description: string = '';
+  price: number = 0;
+  category: number = 1;
+  brand: number = 1;
+  image: string = '';
 
   constructor(
     private router: Router,

@@ -23,6 +23,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
 import { DashboardService } from './services/dashboard.service';
+import { BrandListComponent } from './components/brand-list/brand-list.component';
+import { CategoryListComponent } from './components/category-list/category-list.component';
+import { BrandAddComponent } from './components/brand-add/brand-add.component';
+import { CategoryAddComponent } from './components/category-add/category-add.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +43,10 @@ import { DashboardService } from './services/dashboard.service';
     HeaderComponent,
     FooterComponent,
     OrderDetailsComponent,
+    BrandListComponent,
+    CategoryListComponent,
+    BrandAddComponent,
+    CategoryAddComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [

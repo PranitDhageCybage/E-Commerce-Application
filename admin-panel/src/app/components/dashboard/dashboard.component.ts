@@ -13,11 +13,15 @@ export class DashboardComponent implements OnInit {
   totalProduct: number = 0;
   totalOrder: number = 0;
   activeOrder: number = 0;
+  totalBrands: number = 0;
+  totalCategories: number = 0;
   ngOnInit(): void {
     this.loadUserCount();
     this.loadProductCount();
     this.loadOrderCount();
     this.loadActiveOrderCount();
+    this.loadBrandsCount();
+    this.loadCategoriessCount();
   }
 
   loadUserCount() {
@@ -54,6 +58,25 @@ export class DashboardComponent implements OnInit {
     this.dashboardService.getActiveOrderCount().subscribe((response: any) => {
       if (response['status'] == 'success') {
         this.activeOrder = response['data'][0]['activeOrder'];
+      } else {
+        console.log(response['error']);
+      }
+    });
+  }
+  loadBrandsCount() {
+    this.dashboardService.getBrandsCount().subscribe((response: any) => {
+      if (response['status'] == 'success') {
+        this.totalBrands = response['data'][0]['totalBrands'];
+      } else {
+        console.log(response['error']);
+      }
+    });
+  }
+
+  loadCategoriessCount() {
+    this.dashboardService.getCategoriesCount().subscribe((response: any) => {
+      if (response['status'] == 'success') {
+        this.totalCategories = response['data'][0]['totalCategories'];
       } else {
         console.log(response['error']);
       }
