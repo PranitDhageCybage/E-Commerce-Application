@@ -26,8 +26,6 @@ export class BrandAddComponent implements OnInit {
       this.brandService.getBrand(id).subscribe((response: any) => {
         if (response['status'] == 'success') {
           this.brand = response['data'][0];
-          console.log(this.brand);
-
           this.title = this.brand['title'];
           this.description = this.brand['description'];
         } else {
