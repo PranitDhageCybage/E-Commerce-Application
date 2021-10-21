@@ -19,6 +19,24 @@ router.get("/all-count", (request, response) => {
   };
   try {
     (async () => {
+      /**--------------------------------------------------------------------- */
+      //Get All data in single query
+
+      // const statement = `SELECT
+      // (SELECT COUNT(*) FROM user) as totalUser,
+      // (SELECT COUNT(*) FROM product) as totalProduct,
+      // (SELECT COUNT(*) FROM userorder) as totalOrder,
+      // (SELECT COUNT(*) FROM userorder WHERE deliveryStatus NOT IN ('Cancelled', 'Delivered')) as activeOrder,
+      // (SELECT COUNT(*) FROM brand) as totalBrands,
+      // (SELECT COUNT(*) FROM category) as totalCategories
+      // FROM DUAL`;
+
+      //   db.query(statement, (error, data) => {
+      //     response.send(utils.createResult(error, data));
+      //   });
+
+      /**--------------------------------------------------------------------- */
+
       //get user count
       const userStatement = `SELECT COUNT(id) AS totalUser FROM user`;
       const [usersCount] = await dbPromise.execute(userStatement);
